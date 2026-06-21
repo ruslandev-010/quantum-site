@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantum Elite School Admin Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <section class="admin-login" id="admin-login-screen">
+        <div class="admin-login-card">
+          <p class="section-kicker">Private access</p>
+          <h1>Quantum Elite School Admin</h1>
+          <p>
+            Скрытый вход в админку. После авторизации откроется панель
+            управления сайтом.
+          </p>
+
+          <form class="stack-form" id="admin-login-form">
+            <label>
+              <span>Логин</span>
+              <input
+                type="text"
+                name="username"
+                autocomplete="username"
+                required
+              />
+            </label>
+            <label>
+              <span>Пароль</span>
+              <input
+                type="password"
+                name="password"
+                autocomplete="current-password"
+                required
+              />
+            </label>
+            <button class="button button-primary" type="submit">Войти</button>
+            <p
+              class="form-feedback"
+              id="admin-login-feedback"
+              aria-live="polite"
+            ></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="../site-data.js"></script>
+    <script src="../admin.js"></script>
+  </body>
+</html>

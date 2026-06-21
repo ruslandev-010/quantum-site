@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantum Elite School Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <section class="admin-login" id="admin-login-screen">
+        <div class="admin-login-card">
+          <p class="section-kicker">Private access</p>
+          <h1>Quantum Elite School Admin</h1>
+          <p>
+            Эта страница не связана из меню. Вход защищён логином и паролем для
+            управления сайтом.
+          </p>
+
+          <form class="stack-form" id="admin-login-form">
+            <label>
+              <span>Логин</span>
+              <input
+                type="text"
+                name="username"
+                autocomplete="username"
+                required
+              />
+            </label>
+            <label>
+              <span>Пароль</span>
+              <input
+                type="password"
+                name="password"
+                autocomplete="current-password"
+                required
+              />
+            </label>
+            <button class="button button-primary" type="submit">Войти</button>
+            <p
+              class="form-feedback"
+              id="admin-login-feedback"
+              aria-live="polite"
+            ></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-dashboard hidden" id="admin-dashboard">
+        <header class="admin-topbar">
+          <div>
+            <p class="section-kicker">Управление сайтом</p>
+            <h1>Quantum Elite School</h1>
+          </div>
+          <div class="admin-topbar-actions">
+            <a
+              class="button button-secondary"
+              href="index.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Открыть сайт
+            </a>
+            <button
+              class="button button-secondary"
+              type="button"
+              id="admin-logout"
+            >
+              Выйти
+            </button>
+          </div>
+        </header>
+
+        <div class="admin-summary" id="admin-summary"></div>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">Основное</p>
+              <h2>Тексты, контакты, YouTube и карта</h2>
+            </div>
+          </div>
+
+          <form class="stack-form admin-form-grid" id="settings-form">
+            <label>
+              <span>Hero заголовок</span>
+              <input type="text" name="heroTitle" />
+            </label>
+            <label>
+              <span>Hero подзаголовок</span>
+              <input type="text" name="heroSubtitle" />
+            </label>
+            <label class="field-wide">
+              <span>Описание в hero</span>
+              <textarea name="heroDescription" rows="3"></textarea>
+            </label>
+            <label class="field-wide">
+              <span>О школе</span>
+              <textarea name="aboutText" rows="4"></textarea>
+            </label>
+            <label>
+              <span>Год основания</span>
+              <input type="text" name="founded" />
+            </label>
+            <label>
+              <span>Ученики</span>
+              <input type="text" name="studentsCount" />
+            </label>
+            <label>
+              <span>Лет опыта</span>
+              <input type="text" name="experienceCount" />
+            </label>
+            <label>
+              <span>Телефон</span>
+              <input type="text" name="phone" />
+            </label>
+            <label>
+              <span>Telegram ссылка</span>
+              <input type="text" name="telegramUrl" />
+            </label>
+            <label>
+              <span>Telegram Bot Token</span>
+              <input
+                type="password"
+                name="telegramBotToken"
+                placeholder="Для автоотправки заявок в Telegram"
+              />
+            </label>
+            <label>
+              <span>Telegram Chat ID</span>
+              <input
+                type="text"
+                name="telegramChatId"
+                placeholder="Например: 123456789"
+              />
+            </label>
+            <label>
+              <span>SMS API URL</span>
+              <input
+                type="text"
+                name="smsApiUrl"
+                placeholder="https://sms-provider.uz/send?phone={phone}&text={message}"
+              />
+            </label>
+            <label>
+              <span>SMS API Token</span>
+              <input
+                type="password"
+                name="smsApiToken"
+                placeholder="Если требуется провайдером"
+              />
+            </label>
+            <label>
+              <span>SMS отправитель</span>
+              <input type="text" name="smsSender" placeholder="Quantum" />
+            </label>
+            <label class="field-wide">
+              <span>Адрес</span>
+              <input type="text" name="address" />
+            </label>
+            <label class="field-wide">
+              <span>Ссылка на YouTube embed</span>
+              <input
+                type="text"
+                name="youtubeEmbed"
+                placeholder="https://www.youtube.com/embed/..."
+              />
+            </label>
+            <label class="field-wide">
+              <span>Ссылка на карту embed</span>
+              <input
+                type="text"
+                name="mapEmbed"
+                placeholder="https://www.google.com/maps/embed?... или другой iframe src"
+              />
+            </label>
+            <p class="form-feedback field-wide">
+              Если указать Bot Token и Chat ID, новые заявки будут дополнительно
+              отправляться в Telegram. Это удобно, но для настоящей безопасности
+              лучше потом вынести это на сервер. SMS URL может содержать
+              <code>{phone}</code>, <code>{message}</code>,
+              <code>{token}</code>, <code>{sender}</code>.
+            </p>
+            <button class="button button-primary" type="submit">
+              Сохранить настройки
+            </button>
+            <p
+              class="form-feedback"
+              id="settings-feedback"
+              aria-live="polite"
+            ></p>
+          </form>
+
+          <div class="admin-note-box">
+            <h3>Как работает Telegram интеграция</h3>
+            <p>
+              Для автоотправки заявок нужен <strong>Bot Token</strong> вашего
+              Telegram-бота и <strong>Chat ID</strong> того чата, куда должны
+              приходить заявки. Это может быть ваш личный Telegram, группа
+              администраторов или канал через привязанного бота.
+            </p>
+            <p>
+              Быстрый порядок такой: 1) создать бота через BotFather, 2)
+              получить от него токен, 3) написать вашему боту хотя бы одно
+              сообщение, 4) узнать Chat ID того чата, куда бот должен слать
+              заявки.
+            </p>
+            <p>
+              Важно: текущая версия сайта статическая, поэтому токен хранится в
+              браузере. Для продакшена лучше перенести отправку на сервер.
+            </p>
+          </div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">CRM и аналитика</p>
+              <h2>Панель директора</h2>
+              <p>
+                Ключевые цифры по заявкам, ученикам, оплатам и быстрым
+                уведомлениям.
+              </p>
+            </div>
+          </div>
+          <div class="director-grid" id="director-analytics"></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">Ученики и оплаты</p>
+              <h2>CRM школы</h2>
+              <p>
+                Быстрый просмотр оплаченных и неоплаченных услуг, управление
+                учениками и SMS родителям.
+              </p>
+            </div>
+            <button
+              class="button button-secondary"
+              type="button"
+              id="add-student-item"
+            >
+              Добавить ученика
+            </button>
+          </div>
+
+          <div class="admin-tools-row">
+            <label>
+              <span>Фильтр оплат</span>
+              <select id="payment-status-filter">
+                <option value="all">Все услуги</option>
+                <option value="paid">Оплаченные</option>
+                <option value="unpaid">Не оплаченные</option>
+              </select>
+            </label>
+            <label>
+              <span>Поиск ученика</span>
+              <input
+                type="search"
+                id="student-search"
+                placeholder="Имя, родитель, телефон"
+              />
+            </label>
+          </div>
+
+          <div class="admin-repeater" id="students-admin-list"></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">SMS</p>
+              <h2>Быстрая связь с родителями</h2>
+              <p>
+                Отправка конкретному родителю или массовое уведомление всем
+                родителям из CRM.
+              </p>
+            </div>
+          </div>
+
+          <form class="stack-form admin-form-grid" id="sms-templates-form">
+            <label class="field-wide">
+              <span>Шаблон о задолженности</span>
+              <textarea name="debt" rows="3"></textarea>
+            </label>
+            <label class="field-wide">
+              <span>Важное уведомление</span>
+              <textarea name="notice" rows="3"></textarea>
+            </label>
+            <label class="field-wide">
+              <span>Массовая рассылка / мероприятие</span>
+              <textarea name="event" rows="3"></textarea>
+            </label>
+            <button class="button button-primary" type="submit">
+              Сохранить SMS-шаблоны
+            </button>
+            <p
+              class="form-feedback"
+              id="sms-templates-feedback"
+              aria-live="polite"
+            ></p>
+          </form>
+
+          <form
+            class="stack-form admin-form-grid sms-bulk-form"
+            id="bulk-sms-form"
+          >
+            <label class="field-wide">
+              <span>Текст массовой SMS</span>
+              <textarea name="message" rows="4"></textarea>
+            </label>
+            <button class="button button-primary" type="submit">
+              Отправить всем родителям
+            </button>
+            <p
+              class="form-feedback"
+              id="bulk-sms-feedback"
+              aria-live="polite"
+            ></p>
+          </form>
+
+          <div class="admin-list" id="sms-log-list"></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">Сценарий поступления</p>
+              <h2>Шаги от заявки до зачисления</h2>
+              <p>Можно менять тексты шагов и добавлять новые этапы.</p>
+            </div>
+            <button
+              class="button button-secondary"
+              type="button"
+              id="add-admission-step"
+            >
+              Добавить шаг
+            </button>
+          </div>
+          <div class="admin-repeater" id="admission-admin-list"></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">Фото</p>
+              <h2>Галерея школы</h2>
+              <p>
+                Можно ввести путь к файлу, внешнюю ссылку или просто загрузить
+                фото прямо здесь из компьютера.
+              </p>
+            </div>
+            <button
+              class="button button-secondary"
+              type="button"
+              id="add-gallery-item"
+            >
+              Добавить фото
+            </button>
+          </div>
+          <div class="admin-repeater" id="gallery-admin-list"></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">Преподаватели</p>
+              <h2>Команда школы</h2>
+              <p>Фото можно загрузить прямо из админки или вставить ссылкой.</p>
+            </div>
+            <button
+              class="button button-secondary"
+              type="button"
+              id="add-teacher-item"
+            >
+              Добавить преподавателя
+            </button>
+          </div>
+          <div class="admin-repeater" id="teachers-admin-list"></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">FAQ и формы</p>
+              <h2>Вопросы родителей и опции заявки</h2>
+              <p>
+                Здесь можно обновлять популярные вопросы и варианты возраста /
+                интересующего направления в форме.
+              </p>
+            </div>
+            <button
+              class="button button-secondary"
+              type="button"
+              id="add-faq-item"
+            >
+              Добавить вопрос
+            </button>
+          </div>
+
+          <form class="stack-form admin-form-grid" id="lead-options-form">
+            <label class="field-wide">
+              <span>Возрастные группы — по одной на строку</span>
+              <textarea name="ageGroups" rows="5"></textarea>
+            </label>
+            <label class="field-wide">
+              <span>Направления — по одному на строку</span>
+              <textarea name="interests" rows="5"></textarea>
+            </label>
+            <button class="button button-primary" type="submit">
+              Сохранить опции формы
+            </button>
+            <p
+              class="form-feedback"
+              id="lead-options-feedback"
+              aria-live="polite"
+            ></p>
+          </form>
+
+          <div class="admin-repeater" id="faq-admin-list"></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">Отзывы</p>
+              <h2>Модерация отзывов</h2>
+            </div>
+          </div>
+
+          <div class="admin-columns">
+            <div>
+              <h3>Ожидают одобрения</h3>
+              <div class="admin-list" id="pending-testimonials-list"></div>
+            </div>
+            <div>
+              <h3>Опубликованные</h3>
+              <div class="admin-list" id="approved-testimonials-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">Заявки</p>
+              <h2>Форма обратной связи</h2>
+            </div>
+            <button
+              class="button button-secondary"
+              type="button"
+              id="clear-leads"
+            >
+              Очистить заявки
+            </button>
+          </div>
+          <div class="admin-list" id="leads-list"></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">Резервная копия</p>
+              <h2>Экспорт и импорт контента</h2>
+              <p>
+                Можно сохранить все тексты и настройки сайта в JSON-файл и потом
+                восстановить их на этом же компьютере.
+              </p>
+            </div>
+          </div>
+
+          <div class="admin-item-actions">
+            <button
+              class="button button-primary"
+              type="button"
+              id="export-site-data"
+            >
+              Экспортировать JSON
+            </button>
+            <button
+              class="button button-secondary"
+              type="button"
+              id="import-site-data"
+            >
+              Импортировать JSON
+            </button>
+            <input
+              class="hidden"
+              type="file"
+              id="import-site-data-input"
+              accept="application/json"
+            />
+          </div>
+          <p class="form-feedback" id="backup-feedback" aria-live="polite"></p>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="section-kicker">Безопасность</p>
+              <h2>Логин и пароль администратора</h2>
+              <p>
+                Сейчас это фронтенд-версия без сервера. Для настоящей защиты
+                позже лучше перенести авторизацию на бэкенд.
+              </p>
+            </div>
+          </div>
+
+          <form class="stack-form admin-form-grid" id="credentials-form">
+            <label>
+              <span>Новый логин</span>
+              <input type="text" name="username" />
+            </label>
+            <label>
+              <span>Новый пароль</span>
+              <input type="password" name="password" />
+            </label>
+            <button class="button button-primary" type="submit">
+              Сохранить доступ
+            </button>
+            <button
+              class="button button-secondary"
+              type="button"
+              id="reset-demo-data"
+            >
+              Сбросить демо-данные
+            </button>
+            <p
+              class="form-feedback"
+              id="credentials-feedback"
+              aria-live="polite"
+            ></p>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <script src="site-data.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
